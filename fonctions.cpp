@@ -95,10 +95,7 @@ void remplirtabcomptes(COMPTEBANCAIRE***comptes,int nbrecomptes){
         if(!*(*comptes+i)) exit(-7);
         printf("entrer les info du compte n%d\n",i+1);
         creercompte(*(*comptes+i));
-
     }
-    
-
 }
 void remplirtabtrans(TRANSACTION*** transactions,int nbretrans){
     for (int i=0;i<nbretrans;i++){
@@ -113,7 +110,6 @@ void affichertabcli(CLIENT** clients,int nbreclients){
         printf("\nles info du client numero %d sont:",i+1);
         afficherclient(**(clients+i));
     }
-
 }
 
 void affichertabcomptes(COMPTEBANCAIRE**compte,int nbrecomptes){
@@ -130,7 +126,6 @@ void affichertabtrans(TRANSACTION** transction,int nbrecomptes){
         affichertransaction(**(transction+i));
         
     }
-
 }
 void estunnombrevalide(int* x) {
     do {
@@ -149,10 +144,7 @@ void estunnombrevalide(int* x) {
 }
 void realloclient(CLIENT*** clients ,int nbreclients,int nbreajoute){
     *clients=(CLIENT**)realloc(*clients,(nbreclients+nbreajoute)*sizeof(CLIENT*));
-    if (!(*clients)) exit(-10);
-    
-
-
+    if (!(*clients)) exit(-10);    
 }
 void tabcliajout(CLIENT*** clients ,int nbreclients,int ajout){
     for (int i=nbreclients;i<(nbreclients+ajout);i++){
@@ -161,5 +153,30 @@ void tabcliajout(CLIENT*** clients ,int nbreclients,int ajout){
         printf("entrer les info du client n%d\n",i+1);
         creerclient(*(*clients+i));
 
+    }
+}
+int recherchercli(CLIENT** cl, int nbcli, int numcin) {
+    for (int i = 0; i < nbcli; i++) {
+        if ((*(cl+i))->numcin ==numcin) {
+            return i; // Retourne l'indice duclient s'il est trouvé
+        }
+    }
+    return -1; // Retourne -1 si le client n'est pas trouvé
+}
+
+void modifclient(CLIENT*** cl,int nbcli){
+    int numcin;
+    printf("\ndonner le numero de CIN du client que vouz voulez modifier");
+    scanf("%d",&numcin);
+    int ind=recherchercli(*cl,nbcli,numcin);
+    //verifie que le client existe dans le tableau en utilisant la fonction recherchercli
+    if(ind!=-1){
+        printf("\nentrer le nouveau numtel");
+        scanf("%d",&(*(*cl+ind))->numtel);
+        printf("\nentrer le nouveau numcompte");
+        scanf("%d",&(*(*cl+ind))->numcompte);        
+    }
+    else {
+        printf("\nClient inexistant !!");
     }
 }
