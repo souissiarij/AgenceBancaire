@@ -32,6 +32,12 @@ struct Transaction {
     
 };
 typedef struct Transaction TRANSACTION;
+struct Resultat {
+    char nom[50];
+    char prenom [50];
+    int nbsTransaction;
+};
+typedef struct Resultat RESULTAT;
 
 
 
