@@ -1,0 +1,45 @@
+//main 
+case 3:
+ //verifie que le tableau des clients n'est pas vide
+  if((nbcli+ajout)>0){
+      modifclient(&cli,(nbcli+ajout));
+  }
+  else{
+   printf("\nvous n'avez  encore saisi aucun client");
+  }
+  break; 
+
+//fct.c
+int recherchercli(CLIENT** cl, int nbcli, int numcin) {
+    for (int i = 0; i < nbcli; i++) {
+        if ((*(cl+i))->numcin ==numcin) {
+            return i; // Retourne l'indice duclient s'il est trouvé
+        }
+    }
+    return -1; // Retourne -1 si le client n'est pas trouvé
+}
+
+void modifclient(CLIENT*** cl,int nbcli){
+    int numcin;
+    printf("\ndonner le numero de CIN du client que vouz voulez modifier");
+    scanf("%d",&numcin);
+    int ind=recherchercli(*cl,nbcli,numcin);
+    //verifie que le client existe dans le tableau en utilisant la fonction recherchercli
+    if(ind!=-1){
+        printf("\nentrer le nouveau numtel");
+        scanf("%d",&(*(*cl+ind))->numtel);
+        printf("\nentrer le nouveau numcompte");
+        scanf("%d",&(*(*cl+ind))->numcompte);        
+    }
+    else {
+        printf("\nClient inexistant !!");
+    }
+}
+//bib.h
+//fonction qui prend pour valeur l'indice du client a modifier,va-etre utilisé dans la fonction modifclient
+int recherchercli(CLIENT** cl, int nbcli, int numcin);
+//prototype pour modifier les informations d'un client dans le tableau des clients
+void modifclient(CLIENT***,int);
+
+      
+           
