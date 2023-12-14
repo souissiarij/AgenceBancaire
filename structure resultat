@@ -21,3 +21,4 @@ for (i=,i<nbclients ;i++)
         strcpy(resu->prenom, c[i].prenom); 
         printf("entrer le nombre des transactions associé aux client ayon le num compte suivant %d",c[i].numcompte);
         scanf("%d",&   (resu->nbsTransaction));}}
+void remplirtabResultat (RESULTAT **,int , CLIENT *, int);
