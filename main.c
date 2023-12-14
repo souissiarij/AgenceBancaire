@@ -16,6 +16,13 @@ int main() {
     //nombre des clients a ajouter si l'utilisateur souhite ajouter des clients
     int ajout=0;
     TRANSACTION nouvelletranstaction;
+     // Déclaration d'un tableau dynamique d'adresses de RESULTAT
+    RESULTAT ** tableauResultats;
+    int nbResultats = 0; // Nombre initial d'éléments dans le tableau
+    int capaciteResultats = 5; // Capacité initiale du tableau
+    tableauResultats = (RESULTAT **)malloc(capaciteResultats * sizeof(RESULTAT *));
+    int x,a,ajout=0;
+
 
     do {
         printf("\n--------------------MENU PRINCIPAL-----------------\n");
