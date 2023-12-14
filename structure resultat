@@ -1,0 +1,23 @@
+int main (){
+struct Resultat {
+    char nom[50];
+    char prenom [50];
+    int nbsTransaction;
+};
+typedef struct Resultat RESULTAT;
+
+void remplirtabResultat( RESULTAT**,int nb, CLIENT *c, int nbclient  ){
+
+
+
+Resultat *  resu ; 
+for (i=,i<nbclients ;i++)
+    
+    {
+        resu= (Resultat*) malloc (size of (RESULTAT)); 
+        if ( resu== NULL) 
+            exit (-1);
+        strcpy(resu-> nom,c[i].nom);
+        strcpy(resu->prenom, c[i].prenom); 
+        printf("entrer le nombre des transactions associé aux client ayon le num compte suivant %d",c[i].numcompte);
+        scanf("%d",&   (resu->nbsTransaction));}}
