@@ -19,7 +19,7 @@ int main() {
         printf("\n--------------------MENU PRINCIPAL-----------------\n");
         printf("Que voulez vous faire ?  \n");
         printf("tapez 1 pour effectuer un remplissage  \n");
-        printf("tapez 2 afficher les informations des clients , comptes ou transactions \n ");
+        printf("tapez 2 afficher les informations des clients , comptes, transactions,ou resultats \n ");
         printf("tapez 3 pour modifier les informations d'un client  \n");
         printf("tapez 4 pour pour effectuer une transaction \n");
         printf("taper 5 pour quitter \n");
@@ -27,7 +27,7 @@ int main() {
         switch (option) {
             case 1:
                 do{
-                    printf("tapez 1 pour remplir le tableau des clients \n");
+                    printf("\ntapez 1 pour remplir le tableau des clients \n");
                     printf("tapez 2 pour remplir le tableau des comptes \n");
                     printf("tapez 3 pour remplir le tableau des transactions \n");
                     printf("tapez 4 pour remplir le tableau des resultats\n");
@@ -83,7 +83,7 @@ int main() {
                 break;         
             case 2:
                 do{
-                    printf("tapez 1 pour afficher le tableau des clients \n");
+                    printf("\ntapez 1 pour afficher le tableau des clients \n");
                     printf("tapez 2 pour afficher le tableau des comptes \n");
                     printf("tapez 3 pour afficher le tableau des transactions \n");
                     printf("tapez 4 pour afficher le tableau des resultats \n");
