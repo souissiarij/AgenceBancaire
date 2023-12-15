@@ -180,3 +180,35 @@ void modifclient(CLIENT*** cl,int nbcli){
         printf("\nClient inexistant !!");
     }
 }
+void creerresultat(RESULTAT* resul){
+    printf("\nnom:");
+    scanf("%s",&resul->nom);
+    printf("\nprenom:");
+    scanf("%s",&resul->prenom);
+    printf("\nnbre de transaction:");
+    scanf("%d",&resul->nbsTransaction);    
+}
+void afficheresultat(RESULTAT resul){
+    printf("\nnom: %s",resul.nom);
+    printf("\nnom: %s",resul.prenom);
+    printf("\nnom: %d",resul.nbsTransaction);
+}
+void allouerresultat(RESULTAT*** resul,int nbres){
+    *resul=(RESULTAT**)malloc(nbres*sizeof(RESULTAT*));
+    if(!*resul) exit(-3);
+}
+void remplirtabresultat(RESULTAT*** resul ,int nbres){
+    for (int i=0;i<nbres;i++){
+        *(*resul+i)=(RESULTAT*)malloc(sizeof(RESULTAT));
+        if(!*(*resul+i)) exit(-6);
+        printf("entrer les info du RESULTAT n%d\n",i+1);
+        creerresultat(*(*resul+i));
+
+    }
+}
+void affichertabresultat(RESULTAT** resul,int nbres){
+    for(int i=0;i<nbres;i++){
+        printf("\nles info du RESULTAT numero %d sont:",i+1);
+        afficheresultat(**(resul+i));
+    }
+}
