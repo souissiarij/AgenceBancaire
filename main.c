@@ -30,7 +30,7 @@ int main() {
                     printf("tapez 1 pour remplir le tableau des clients \n");
                     printf("tapez 2 pour remplir le tableau des comptes \n");
                     printf("tapez 3 pour remplir le tableau des transactions \n");
-                    printf("tapez 4 pour remplir le tableau des resultats");
+                    printf("tapez 4 pour remplir le tableau des resultats\n");
                     printf("taper 5 pour revenir au menu principal \n");
                     scanf("%d", &x);
                     switch (x) {
@@ -79,14 +79,15 @@ int main() {
                             allouerresultat(&resultat,nbres);
                             remplirtabresultat(&resultat,nbres);   
                     }                   
-                }while(x!=5); 
+                }while(x!=5);//reviens au menu principal si l'utilisateur tape 5
                 break;         
             case 2:
                 do{
                     printf("tapez 1 pour afficher le tableau des clients \n");
                     printf("tapez 2 pour afficher le tableau des comptes \n");
                     printf("tapez 3 pour afficher le tableau des transactions \n");
-                    printf("taper 4 pour revenir au menu principal \n");
+                    printf("tapez 4 pour afficher le tableau des resultats \n");
+                    printf("taper 5 pour revenir au menu principal \n");
                     scanf("%d", &y);
                     switch (y)
                     {
@@ -134,7 +135,7 @@ int main() {
                     break;  
                     }                
 
-                }while(y!=5);
+                }while(y!=5);//reviens au menu principal si l'utilisateur tape 5
                 break;    
             case 3:
             //verifie que le tableau des clients n'est pas vide
