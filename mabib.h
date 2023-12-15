@@ -55,7 +55,7 @@ void afficherclient(CLIENT);
 void affichercompte(COMPTEBANCAIRE);
 // Prototype pour afficher les informations d'une transaction
 void affichertransaction(TRANSACTION);
-//fonction qui prend pour valeur l'indice du client a modifier,va t-etre utilisé dans la fonction modifclient
+//fonction qui prend pour valeur l'indice du client a modifier,va-etre utilisé dans la fonction modifclient
 int recherchercli(CLIENT** cl, int nbcli, int numcin);
 //prototype pour modifier les informations d'un client dans le tableau des clients
 void modifclient(CLIENT***,int);
@@ -77,4 +77,10 @@ void estunnombrevalide(int*);
 void realloclient(CLIENT***  ,int ,int );
 //procedure qui ajoute des cases a un tableau des clients
 void tabcliajout(CLIENT***  ,int ,int );
+//Manipulation du structure RESULTAT
+void creerresultat(RESULTAT* );
+void afficheresultat(RESULTAT );
+void allouerresultat(RESULTAT***,int);
+void remplirtabresultat(RESULTAT*** , int );
+void affichertabresultat(RESULTAT** ,int );
 #endif 
