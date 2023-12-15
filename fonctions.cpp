@@ -185,13 +185,25 @@ void creerresultat(RESULTAT* resul){
     scanf("%s",&resul->nom);
     printf("\nprenom:");
     scanf("%s",&resul->prenom);
-    printf("\nnbre de transaction:");
-    scanf("%d",&resul->nbsTransaction);    
+    printf("\nCombien de transactions a ce client fait?:");
+    scanf("%d",&resul->nbreTransactions); 
+    resul->montantTrans=(float*)malloc ((resul->nbreTransactions)*sizeof(int));
+	if( ! (resul->montantTrans) ) exit(-2);
+    printf("\n remplissage du tableau des montants des transactions \n");
+	for(int i=0; i<(resul->nbreTransactions);i++){
+		scanf("%f", resul->montantTrans+i ); 
+    }      
+
 }
 void afficheresultat(RESULTAT resul){
     printf("\nnom: %s",resul.nom);
     printf("\nnom: %s",resul.prenom);
-    printf("\nnom: %d",resul.nbsTransaction);
+    printf("\nnbres des transaction: %d",resul.nbreTransactions);
+    printf("\n affichage du tableau des montants des transactions \n");
+	for(int i=0; i<(resul.nbreTransactions);i++){
+		printf("%.2f   ", *(resul.montantTrans+i) );
+    }    
+    
 }
 void allouerresultat(RESULTAT*** resul,int nbres){
     *resul=(RESULTAT**)malloc(nbres*sizeof(RESULTAT*));
