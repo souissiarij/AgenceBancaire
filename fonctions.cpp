@@ -1,4 +1,4 @@
-#include"Bib.h"
+#include"bib.h"
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -58,7 +58,7 @@ void afficherclient(CLIENT client) {
 void affichercompte(COMPTEBANCAIRE compte) {
     printf("\nInformations du compte bancaire :\n");
     printf("Solde du compte : %.2lf\n", compte.solde);
-    afficherclient(*(compte.client)); 
+    afficherclient(*(compte.client));
 }
 void affichertransaction(TRANSACTION transaction) {
     printf("\nInformations de la transaction :\n");
@@ -66,7 +66,7 @@ void affichertransaction(TRANSACTION transaction) {
     printf("Type de transaction : %s\n", transaction.type);
     printf("Date de la transaction : %d/%d/%d\n",(transaction.date)->jour,(transaction.date)->mois,(transaction.date)->annee);
     printf("Numero unique de la transaction : %d\n", transaction.numeroTransaction);
-    affichercompte(*(transaction.compte)); 
+    affichercompte(*(transaction.compte));
 }
 void allouerclient(CLIENT*** clients,int nbrclients){
     *clients=(CLIENT**)malloc(nbrclients*sizeof(CLIENT*));
@@ -116,7 +116,7 @@ void affichertabcomptes(COMPTEBANCAIRE**compte,int nbrecomptes){
     for(int i=0;i<nbrecomptes;i++){
         printf("\nles info du compte numero %d sont: ",i+1);
         affichercompte(**(compte+i));
-        
+
     }
 }
 
@@ -124,7 +124,7 @@ void affichertabtrans(TRANSACTION** transction,int nbrecomptes){
     for(int i=0;i<nbrecomptes;i++){
         printf("\nles info de la transction numero %d :",i+1);
         affichertransaction(**(transction+i));
-        
+
     }
 }
 void estunnombrevalide(int* x) {
@@ -133,18 +133,18 @@ void estunnombrevalide(int* x) {
         if (*x >= 10000000 && *x <= 99999999) {
             int firstDigit = *x / 10000000;
             if (firstDigit == 9 || firstDigit == 5 || firstDigit == 2 || firstDigit == 4) {
-                break; 
-            } 
+                break;
+            }
             else {printf("Num tel invalide. svp entrer un nombre commencant avec 9,5,2 ou 4.\n");
-            }        
+            }
         } else {
             printf("Num tel invalide. svp saisir un entier de 8 chiffres.\n");
         }
-    } while (1); 
+    } while (1);
 }
 void realloclient(CLIENT*** clients ,int nbreclients,int nbreajoute){
     *clients=(CLIENT**)realloc(*clients,(nbreclients+nbreajoute)*sizeof(CLIENT*));
-    if (!(*clients)) exit(-10);    
+    if (!(*clients)) exit(-10);
 }
 void tabcliajout(CLIENT*** clients ,int nbreclients,int ajout){
     for (int i=nbreclients;i<(nbreclients+ajout);i++){
@@ -174,7 +174,7 @@ void modifclient(CLIENT*** cl,int nbcli){
         printf("\nentrer le nouveau numtel");
         scanf("%d",&(*(*cl+ind))->numtel);
         printf("\nentrer le nouveau numcompte");
-        scanf("%d",&(*(*cl+ind))->numcompte);        
+        scanf("%d",&(*(*cl+ind))->numcompte);
     }
     else {
         printf("\nClient inexistant !!");
@@ -186,24 +186,24 @@ void creerresultat(RESULTAT* resul){
     printf("\nprenom:");
     scanf("%s",&resul->prenom);
     printf("\nCombien de transactions a ce client fait?:");
-    scanf("%d",&resul->nbreTransactions); 
+    scanf("%d",&resul->nbreTransactions);
     resul->montantTrans=(float*)malloc ((resul->nbreTransactions)*sizeof(float));
 	if( ! (resul->montantTrans) ) exit(-2);
     printf("\n remplissage du tableau des montants des transactions \n");
 	for(int i=0; i<(resul->nbreTransactions);i++){
-		scanf("%f", resul->montantTrans+i ); 
-    }      
+		scanf("%f", resul->montantTrans+i );
+    }
 
 }
 void afficheresultat(RESULTAT resul){
     printf("\nnom: %s",resul.nom);
-    printf("\nprenom: %s",resul.prenom);
+    printf("\nnom: %s",resul.prenom);
     printf("\nnbres des transaction: %d",resul.nbreTransactions);
     printf("\n affichage du tableau des montants des transactions \n");
 	for(int i=0; i<(resul.nbreTransactions);i++){
 		printf("%.2f   ", *(resul.montantTrans+i) );
-    }    
-    
+    }
+
 }
 void allouerresultat(RESULTAT*** resul,int nbres){
     *resul=(RESULTAT**)malloc(nbres*sizeof(RESULTAT*));
@@ -222,5 +222,109 @@ void affichertabresultat(RESULTAT** resul,int nbres){
     for(int i=0;i<nbres;i++){
         printf("\nles info du RESULTAT numero %d sont:",i+1);
         afficheresultat(**(resul+i));
+
     }
 }
+RESULTAT saisir_res(){
+
+
+RESULTAT res ;
+printf("\n entrer le nom :\n");
+scanf("%s" ,&res.nom);
+printf("\n saisir le prenome : \n");
+scanf("%s",&res.prenom);
+printf("\entrer le nombre des transactions :\n");
+scanf("%d",&res.nbreTransactions);
+res.montantTrans=(float*)malloc(res.nbreTransactions*sizeof(float));
+if(!res.montantTrans)exit(-1);
+for (int i=0;i< res.nbreTransactions;i++){
+
+    printf("montant numero %d",i);
+    scanf("%f",&res.montantTrans+i);
+}
+return res ;}
+void afficherResultat(RESULTAT res){
+
+
+int i  ;
+printf("\n le nom de client est : %s\n",res.nom);
+printf("\n le prenom de client est : %s\n",res.prenom);
+printf("_\n le nombre des transactions est : %d \n",res.nbreTransactions);
+for (int i=0;i< res.nbreTransactions;i++)
+{
+    printf ("%f \n", res.montantTrans[i]);
+}
+}
+
+/* ***************GESTION D UN FICHIER RESULTAT************************/
+
+void ecrireresultatdansunfichier(FILE *fc,RESULTAT res){
+
+fwrite(&res.nom, sizeof(char),15,fc);
+fwrite(&res.prenom, sizeof(char),15,fc);
+fwrite(&res.nbreTransactions,sizeof(int),1,fc);
+fwrite(res.montantTrans,sizeof(float),res.nbreTransactions,fc);}
+RESULTAT lire_une_resultat_du_fichier(FILE*fc)
+{
+    RESULTAT res;
+    fread(&res.nom,sizeof(char),15,fc);
+    fread(&res.prenom,sizeof(char),15,fc);
+    fread(&res.nbreTransactions,sizeof(int),1,fc);
+
+    res.montantTrans=(float*)malloc(res.nbreTransactions*sizeof(float));
+    if(!res.montantTrans)exit(-1);
+    fread(res.montantTrans,sizeof(float),res.nbreTransactions,fc);
+    return res ;
+}
+
+void creer_fichier_resultat_index(FILE**fc,FILE**fi){
+
+*fc=fopen("fichierresultat","wb+");
+if(!*fc)exit(-1);
+*fi=fopen("fichierresultatindex","wb+");
+if(!*fi)exit(-1);
+
+}
+void remplir_fichier_resultat_index(FILE*fc,FILE*fi)
+{
+    int x ;
+    RESULTAT res;
+    do{
+
+         res=saisir_res();
+         if (res.nbreTransactions == 0) break;
+          x=ftell(fc);
+          fwrite(&x,sizeof(int),1,fi);
+          (fc,res);
+
+
+            }while (res.nbreTransactions!=0);
+}
+void afficher_fichier_resultat_index (FILE *fc, FILE*fi){
+
+RESULTAT res;
+int x ;
+rewind(fc);rewind(fi);
+printf("\n affichage du fichier index : \n");
+while (1)
+{
+    fread(&x,sizeof(int),1,fi);
+    if (feof(fi)) break ;
+    printf("\n %d",x);
+
+}
+rewind(fi);
+printf("\n affichage du fichier chambre \n");
+while (1)
+{
+    fread(&x,sizeof(int),1,fi);
+    if (feof(fi)) break ;
+    fseek(fc,x,0);
+    res=lire_une_resultat_du_fichier(fc);
+    afficherResultat(res);
+    printf("\n %d",x);
+
+}
+}
+
+
