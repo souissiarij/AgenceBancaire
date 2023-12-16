@@ -187,7 +187,7 @@ void creerresultat(RESULTAT* resul){
     scanf("%s",&resul->prenom);
     printf("\nCombien de transactions a ce client fait?:");
     scanf("%d",&resul->nbreTransactions); 
-    resul->montantTrans=(float*)malloc ((resul->nbreTransactions)*sizeof(int));
+    resul->montantTrans=(float*)malloc ((resul->nbreTransactions)*sizeof(float));
 	if( ! (resul->montantTrans) ) exit(-2);
     printf("\n remplissage du tableau des montants des transactions \n");
 	for(int i=0; i<(resul->nbreTransactions);i++){
