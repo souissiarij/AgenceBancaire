@@ -197,7 +197,7 @@ void creerresultat(RESULTAT* resul){
 }
 void afficheresultat(RESULTAT resul){
     printf("\nnom: %s",resul.nom);
-    printf("\nnom: %s",resul.prenom);
+    printf("\nprenom: %s",resul.prenom);
     printf("\nnbres des transaction: %d",resul.nbreTransactions);
     printf("\n affichage du tableau des montants des transactions \n");
 	for(int i=0; i<(resul.nbreTransactions);i++){
